@@ -5,4 +5,6 @@
     <string name="buscar">Buscar</string>
     <string name="aceptar">Aceptar</string>
     <string name="sugerir">Escriba un título o autor</string>
+    <string name="titulo">Titulo del libro</string>
+    <string name="autor">Autor del libro</string>
 </resources>

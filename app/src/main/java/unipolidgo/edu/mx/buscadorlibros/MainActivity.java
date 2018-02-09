@@ -9,8 +9,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -28,9 +30,11 @@ import java.net.URLEncoder;
 public class MainActivity extends AppCompatActivity {
 
     public ShareActionProvider vShareActionProvider;
-    private static final String QUERY_URL= "http://openlibrary.org/search.json?q?";
+    private static final String QUERY_URL= "http://openlibrary.org/search.json?q=";
     Button btnBuscar ;
     EditText edtSugerir;
+    ListView lstLista;
+    AdaptadorJSON adaptador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,18 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(menu);
 
         btnBuscar = (Button) this.findViewById(R.id.btnBuscar);
+        adaptador = new AdaptadorJSON(this, getLayoutInflater());
+        lstLista = (ListView) findViewById(R.id.lista);
+        lstLista.setAdapter(adaptador);
+        edtSugerir = (EditText) findViewById(R.id.edtSugerir);
+        btnBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                queryBooks(edtSugerir.getText().toString());
+            }
+        });
+
+
     }
 
     @Override
@@ -82,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
             public  void onSuccess(int statusCode, Header[] headers, JSONObject response){
                 Toast.makeText(getApplicationContext(), "OK!", Toast.LENGTH_LONG).show();
                 Log.d("Resultados", response.toString());
+                adaptador.updateData(response.optJSONArray("docs"));
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse){
