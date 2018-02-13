@@ -61,7 +61,6 @@ public class AdaptadorJSON extends BaseAdapter {
             holder.imagenView = (ImageView) view.findViewById(R.id.miniatura);
             holder.autorView = (TextView) view.findViewById(R.id.autor);
             holder.tituloView = (TextView) view.findViewById(R.id.titulo);
-
             view.setTag(holder);
         }
         else {

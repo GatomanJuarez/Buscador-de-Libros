@@ -5,6 +5,9 @@
     <string name="buscar">Buscar</string>
     <string name="aceptar">Aceptar</string>
     <string name="sugerir">Escriba un título o autor</string>
-    <string name="titulo">Titulo del libro</string>
-    <string name="autor">Autor del libro</string>
+    <string name="titulo">Titulo del libro: </string>
+    <string name="autor">Autor del libro: </string>
+    <string name="detalles">Detalles  de libro</string>
+    <string name="ano">Año de publicación: </string>
+    <string name="publicacion">Genero: </string>
 </resources>
